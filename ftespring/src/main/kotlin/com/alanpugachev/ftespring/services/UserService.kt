@@ -9,4 +9,8 @@ class UserService(private val userRepository: UserRepository) {
     fun save(user: Users): Users {
         return this.userRepository.save(user)
     }
+
+    fun findByEmail(email: String): Users? {
+        return this.userRepository.findByEmail(email)
+    }
 }

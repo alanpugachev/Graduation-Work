@@ -19,7 +19,7 @@ class Users {
     @Column
     var secondName = ""
 
-    @Column
+    @Column(unique = true)
     var email = ""
 
     @Column

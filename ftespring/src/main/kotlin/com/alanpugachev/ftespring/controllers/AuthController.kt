@@ -1,5 +1,7 @@
 package com.alanpugachev.ftespring.controllers
 
+import com.alanpugachev.ftespring.dtos.LoginDTO
+import com.alanpugachev.ftespring.dtos.Message
 import com.alanpugachev.ftespring.dtos.RegisterDTO
 import com.alanpugachev.ftespring.models.Users
 import com.alanpugachev.ftespring.services.UserService
@@ -21,5 +23,13 @@ class AuthController(private val userService: UserService) {
         user.role = body.role
 
         return ResponseEntity.ok(this.userService.save(user))
+    }
+
+    @PostMapping("login")
+    fun login(@RequestBody body: LoginDTO): ResponseEntity<Any>{
+        val user = this.userService.findByEmail(body.email)
+            ?: return ResponseEntity.badRequest().body(Message("user not found!"))
+
+        return ResponseEntity.ok(user)
     }
 }
