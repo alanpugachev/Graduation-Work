@@ -5,4 +5,5 @@ class RegisterDTO {
     val secondName = ""
     val email = ""
     val password = ""
+    val role = ""
 }

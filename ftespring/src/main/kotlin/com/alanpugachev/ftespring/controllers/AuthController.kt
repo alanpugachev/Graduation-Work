@@ -5,18 +5,20 @@ import com.alanpugachev.ftespring.models.Users
 import com.alanpugachev.ftespring.services.UserService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
 class AuthController(private val userService: UserService) {
-    @GetMapping("register")
+    @PostMapping("register")
     fun register(@RequestBody body: RegisterDTO): ResponseEntity<Users> {
         val user = Users()
         user.firstName = body.firstName
         user.secondName = body.secondName
         user.email = body.email
         user.password = body.password
+        user.role = body.role
 
         return ResponseEntity.ok(this.userService.save(user))
     }

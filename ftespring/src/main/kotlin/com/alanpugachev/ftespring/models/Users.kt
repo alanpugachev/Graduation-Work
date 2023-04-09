@@ -31,5 +31,5 @@ class Users {
         }
 
     @Column
-    var role = "user"
+    var role = ""
 }
