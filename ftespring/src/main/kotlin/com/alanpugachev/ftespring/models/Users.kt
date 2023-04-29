@@ -1,5 +1,6 @@
 package com.alanpugachev.ftespring.models
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -24,6 +25,7 @@ class Users {
 
     @Column
     var password = ""
+        @JsonIgnore
         get() = field
         set(value) {
             val passwordEncoder = BCryptPasswordEncoder()
@@ -32,4 +34,8 @@ class Users {
 
     @Column
     var role = ""
+
+    fun comparePassword(password: String): Boolean {
+        return BCryptPasswordEncoder().matches(password, this.password)
+    }
 }
