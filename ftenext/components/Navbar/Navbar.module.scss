@@ -1,0 +1,42 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f2c53d;
+  width: 100%;
+  height: 10vh;
+  font-size: 24px;
+  border-radius: 4px;
+}
+
+.links {
+  display: flex;
+  gap: 1rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  color: #212121;
+  cursor: pointer;
+  //background-color:#F22449;
+  border-radius: 2px;
+  width: 33wh;
+  height: auto;
+  position: relative;
+  margin-left: 8px;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  width: 10%;
+  height: 10%;
+}
+
+.hhub {
+  font-family: 'CustomFont', sans-serif;
+  font-size: 32px;
+  color: #fff;
+  cursor: auto;
+}
