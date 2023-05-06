@@ -9,7 +9,7 @@ const Navbar: React.FC = () => {
         <Link href="/" className={styles.item}>
           Home
         </Link>
-        <Link href="/login" className={styles.item}>
+        <Link href="/register" className={styles.item}>
           Log In
         </Link>
         <Link href="/admin" className={styles.item}>
