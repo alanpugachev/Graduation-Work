@@ -1,10 +1,11 @@
 import { Inter } from 'next/font/google';
 import Layout from '../../../components/Layout/Layout';
+import styles from './Register.module.scss';
 import { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-interface Data {
+interface FormData {
   firstName: string;
   secondName: string;
   email: string;
@@ -12,30 +13,37 @@ interface Data {
   role: string;
 }
 
-interface ResponseData {
+{ /* interface ResponseData {
   id: number;
   firstName: string;
   secondName: string;
   email: string;
   role: string;
-}
+} */ }
 
-const LoginPage: React.FC = () => {
-  const [responseData, setResponseData] = useState<ResponseData | null>(null);
+const RegisterPage: React.FC = () => {
+  const [formData, setFormData] = useState<FormData>({
+    firstName: '',
+    secondName: '',
+    email: '',
+    password: '',
+    role: '',
+  });
 
-  
-  async function sendPostRequest(): Promise<void> {
-    const url = 'http://localhost:8080/register'
-    const data: Data = {
-      firstName: 'Kostick',
-      secondName: 'Rogacheff',
-      email: 'kostenrogacheff@gmail.com',
-      password: '5566',
-      role: 'admin'
-    };
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [message, setMessage] = useState<string | null>(null);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const sendData = async (data: FormData) => {
+    setSubmitStatus('submitting');
+    setMessage(null);
 
     try {
-      const response = await fetch(url, {
+      const response = await fetch('http://localhost:8080/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -44,35 +52,83 @@ const LoginPage: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error('HTTP error: ${response.status}');
+        throw new Error('Network response was not ok');
       }
 
-      const responseData: ResponseData = await response.json();
-      setResponseData(responseData);
+      const responseData = await response.json();
+      console.log('Server response: ', responseData);
+      setSubmitStatus('success');
+      setMessage('Form submitted successfully');
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error during sending data:', error);
+      setSubmitStatus('error');
+      setMessage('An error occured while submitting the form');
     }
-  }
+  };
 
-  useEffect(() => {
-    sendPostRequest();
-  }, []);
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log('Form data:', formData);
+    sendData(formData);
+  };
 
   return (
-    <Layout pageTitle="HourlyHub">
-      <h1>Logged in HourlyHub</h1>
-      {responseData ? (
-        <div>
-          <p> First Name: {responseData.firstName}</p>
-          <p> Second Name: {responseData.secondName}</p>
-          <p> Email: {responseData.email}</p>
-          <p> Role: {responseData.role}</p>
-        </div>
-      ) : (
-        <p>Loading data...</p>
-      )}
+    <Layout pageTitle="Register">
+      <h1>Register in HourlyHub</h1>
+      {submitStatus === 'success' && <p className={styles.success}>{message}</p>}
+      {submitStatus === 'error' && <p className={styles.error}>{message}</p>}
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="firstName">First Name:</label>
+        <input
+          type="text"
+          id="firstName"
+          name="firstName"
+          value={formData.firstName}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="secondName">Second Name:</label>
+        <input
+          type="text"
+          id="secondName"
+          name="secondName"
+          value={formData.secondName}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="email">Email:</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="password">Password:</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+
+        <label htmlFor="role">Role:</label>
+        <input
+          type="text"
+          id="role"
+          name="role"
+          value={formData.role}
+          onChange={handleChange}
+        />
+
+        <button type="submit" disabled={submitStatus === 'submitting'}>
+          {submitStatus === 'submitting' ? 'Submitting...' : 'Submit'}
+        </button>
+      </form>
     </Layout>
   );
 }
 
-export default LoginPage;
+export default RegisterPage;
