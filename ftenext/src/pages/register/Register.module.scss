@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form {
+  margin-top: 2vw;
+  margin-bottom: 2vw;
+
+  width: 25vw;
+  background-color: #3e3e3e;
+  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 4px;
+}
+
+.fieldWLabel {
+  background-color: #4e4e4e ;
+  width: 20vw;
+  height: 8vh;
+  padding-left: 16px;
+  border-radius: 4px;
+}
+
+.formLabel {
+  text-transform: lowercase;
+}
+
+.inputField {
+  width: 18vw;
+  background-color: #2e2e2e;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #4e4e4e ;
+  width: 20vw;
+  height: 8vh;
+
+  border-radius: 4px;
+}
+
+.formButton {
+  margin: auto;
+  width: 18vw;
+  height: 6vh;
+  border-radius: 4px;
+
+  text-transform: lowercase;
+  font-size: large;
+  font-weight: bold;
+  background-color: #f2c53d;
+}

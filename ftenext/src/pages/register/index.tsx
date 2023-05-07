@@ -74,59 +74,92 @@ const RegisterPage: React.FC = () => {
 
   return (
     <Layout pageTitle="Register">
-      <h1>Register in HourlyHub</h1>
-      {submitStatus === 'success' && <p className={styles.success}>{message}</p>}
-      {submitStatus === 'error' && <p className={styles.error}>{message}</p>}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="firstName">First Name:</label>
-        <input
-          type="text"
-          id="firstName"
-          name="firstName"
-          value={formData.firstName}
-          onChange={handleChange}
-        />
+      <div className={styles.container}>
+        <div className={styles.form}>
+          <h1>Register in HourlyHub</h1>
+          
+          {submitStatus === 'success' && <p className={styles.success}>{message}</p>}
+          {submitStatus === 'error' && <p className={styles.error}>{message}</p>}
 
-        <label htmlFor="secondName">Second Name:</label>
-        <input
-          type="text"
-          id="secondName"
-          name="secondName"
-          value={formData.secondName}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-
-        <label htmlFor="role">Role:</label>
-        <input
-          type="text"
-          id="role"
-          name="role"
-          value={formData.role}
-          onChange={handleChange}
-        />
-
-        <button type="submit" disabled={submitStatus === 'submitting'}>
-          {submitStatus === 'submitting' ? 'Submitting...' : 'Submit'}
-        </button>
-      </form>
+          <form onSubmit={handleSubmit} className={styles.form}>
+            <div className={styles.fieldWLabel}>
+              <label htmlFor="firstName" className={styles.formLabel}>First Name:</label>
+              <br/>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                value={formData.firstName}
+                onChange={handleChange}
+                className={styles.inputField}
+                placeholder='Enter your fisrt name'
+              />
+            </div>
+            <br/>
+            <div className={styles.fieldWLabel}>
+              <label htmlFor="secondName" className={styles.formLabel}>Second Name:</label>
+              <br/>
+              <input
+                type="text"
+                id="secondName"
+                name="secondName"
+                value={formData.secondName}
+                onChange={handleChange}
+                className={styles.inputField}
+                placeholder='Enter your second name'
+              />
+            </div>
+            <br/>
+            <div className={styles.fieldWLabel}>
+              <label htmlFor="email" className={styles.formLabel}>Email:</label>
+              <br/>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                className={styles.inputField}
+                placeholder='Enter your email'
+              />
+            </div>
+            <br/>
+            <div className={styles.fieldWLabel}>
+              <label htmlFor="password" className={styles.formLabel}>Password:</label>
+              <br/>
+              <input
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                className={styles.inputField}
+                placeholder='Enter your password'
+              />
+            </div>
+            <br/>
+            <div className={styles.fieldWLabel}>
+              <label htmlFor="role" className={styles.formLabel}>Role:</label>
+              <br/>
+              <input
+                type="text"
+                id="role"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                className={styles.inputField}
+                placeholder='Enter your role'
+              />
+            </div>
+            <br/>
+            <div className={styles.buttonContainer}>
+              <button className={styles.formButton} type="submit" disabled={submitStatus === 'submitting'}>
+                {submitStatus === 'submitting' ? 'Submitting...' : 'Submit'}
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </Layout>
   );
 }

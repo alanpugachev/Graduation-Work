@@ -18,7 +18,9 @@ const Layout: React.FC<LayoutProps> = ({ children, pageTitle }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
-      <main className={styles.bodyContainer}>{children}</main>
+      <main className={styles.bodyContainer}>
+        {children}
+      </main>
       <footer className={styles.footerContainer}>
         <p>© Alan Pugachev 2023</p>
       </footer>
