@@ -10,7 +10,7 @@ const Navbar: React.FC = () => {
           Home
         </Link>
         <Link href="/register" className={styles.item}>
-          Log In
+          Register
         </Link>
         <Link href="/admin" className={styles.item}>
           For Admins

@@ -15,6 +15,6 @@ class UserService(private val userRepository: UserRepository) {
     }
 
     fun getById(id: Int): Users {
-        return this.userRepository.getReferenceById(id)
+        return this.userRepository.findById(id).get()
     }
 }
