@@ -1,6 +1,7 @@
 package com.alanpugachev.ftespring.controllers;
 
 import com.alanpugachev.ftespring.dtos.CreateTaskDTO
+import com.alanpugachev.ftespring.dtos.Message
 import com.alanpugachev.ftespring.models.Task
 import com.alanpugachev.ftespring.services.TaskService
 import com.alanpugachev.ftespring.services.UserService;
@@ -22,5 +23,14 @@ public class DBEditController(private val taskService: TaskService) {
         task.price = body.price
 
         return ResponseEntity.ok(this.taskService.save(task))
+    }
+
+    @PostMapping("update")
+    fun updateTask(@RequestBody task: Task): ResponseEntity<Any> {
+        return try {
+            ResponseEntity.ok(this.taskService.save(task))
+        } catch (e: Exception) {
+            ResponseEntity.badRequest().body(Message("Invalid data"))
+        }
     }
 }
