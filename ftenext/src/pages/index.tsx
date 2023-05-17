@@ -38,7 +38,7 @@ const HomePage: React.FC<HomePageProps> = ({}) => {
     if (res.ok) {
       const json = await res.json()
       localStorage.setItem("token", json.token)
-      router.push("/")
+      router.push("/user")
     } else {
       alert("Bad credentials")
     }
