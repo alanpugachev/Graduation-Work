@@ -1,44 +1,61 @@
 import { Inter } from 'next/font/google';
 import Layout from '../../components/Layout/Layout';
-import { useEffect, useState } from 'react';
-import jwt from 'jsonwebtoken';
+import { ChangeEvent, useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
+import styles from './home.module.scss';
 
 const inter = Inter({ subsets: ['latin'] });
-
-const isUserLoggedIn = () => {
-  const token = localStorage.getItem('token');
-  if (!token) {
-    return false;
-  }
-
-  try {
-    const decoded = jwt.verify(token, 'secret-key');
-    return true;
-  } catch (err) {
-    console.error('Invalid token', err);
-    return false;
-  }
-};
 
 interface HomePageProps {
 }
 
+interface State {
+  email: string;
+  password: string;
+}
+
 const HomePage: React.FC<HomePageProps> = ({}) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
 
-  useEffect(() => {
-    setIsLoggedIn(isUserLoggedIn());
-  }, []);
+  const [state, setState] = useState<State>({
+    email: "",
+    password: ""
+  })
 
-  if(!isLoggedIn) {
-    <Layout pageTitle="HourlyHub">
-      <h1>Welcome to HourlyHub. Please log in or register</h1>
-    </Layout>
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = e.target;
+    setState(prevState => ({ ...prevState, [name]: value }));
+  }
+  
+  async function handleSubmit() {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+      method: "POST",
+      body: JSON.stringify(state),
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+    if (res.ok) {
+      const json = await res.json()
+      localStorage.setItem("token", json.token)
+      router.push("/")
+    } else {
+      alert("Bad credentials")
+    }
   }
 
   return (
     <Layout pageTitle="HourlyHub">
       <h1>Welcome to HourlyHub</h1>
+
+      <div className={styles.container}>
+        <h1 className={styles.title}>Sign In</h1>
+        <div className={styles.form}>
+          <input className={styles.input} type="text" name="email" placeholder="email" value={state.email} onChange={handleChange} />
+          <input className={styles.input} type="password" name="password" placeholder="password" value={state.password} onChange={handleChange} />
+          <button className={styles.btn} onClick={handleSubmit}>Submit</button>
+        </div>
+      </div>
     </Layout>
   );
 };
