@@ -9,13 +9,13 @@ const inter = Inter({ subsets: ['latin'] });
 interface HomePageProps {
 }
 
-interface State {
+/*interface State {
   email: string;
   password: string;
-}
+} */
 
 const HomePage: React.FC<HomePageProps> = ({}) => {
-  const router = useRouter();
+  /*const router = useRouter();
 
   const [state, setState] = useState<State>({
     email: "",
@@ -42,19 +42,16 @@ const HomePage: React.FC<HomePageProps> = ({}) => {
     } else {
       alert("Bad credentials")
     }
-  }
+  } */
 
   return (
     <Layout pageTitle="HourlyHub">
       <h1>Welcome to HourlyHub</h1>
-
+      <h2>Now please</h2>
+      <a href='/register'>Register</a>
+      <p>or</p>
+      <a href='/login'>Login</a>
       <div className={styles.container}>
-        <h1 className={styles.title}>Sign In</h1>
-        <div className={styles.form}>
-          <input className={styles.input} type="text" name="email" placeholder="email" value={state.email} onChange={handleChange} />
-          <input className={styles.input} type="password" name="password" placeholder="password" value={state.password} onChange={handleChange} />
-          <button className={styles.btn} onClick={handleSubmit}>Submit</button>
-        </div>
       </div>
     </Layout>
   );

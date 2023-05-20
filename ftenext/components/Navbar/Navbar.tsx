@@ -9,9 +9,6 @@ const Navbar: React.FC = () => {
         <Link href="/" className={styles.item}>
           Home
         </Link>
-        <Link href="/register" className={styles.item}>
-          Register
-        </Link>
         <Link href="/admin" className={styles.item}>
           For Admins
         </Link>

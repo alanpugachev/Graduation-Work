@@ -18,25 +18,6 @@ const UserHomePage: React.FC<UserHomePageProps> = (props) => {
   const [profile, setProfile] = useState<Profile | null>(null);
   const router = useRouter();
 
-  useEffect(() => {
-    fetchProfile()
-  }, []);
-
-  async function fetchProfile() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
-      headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + localStorage.getItem("token")
-      }
-    })
-    if (res.ok) {
-      const json = await res.json()
-      setProfile(json)
-    } else {
-      router.push("/user")
-    }
-  }
-
   function logout() {
     localStorage.removeItem("token");
     router.push("/");

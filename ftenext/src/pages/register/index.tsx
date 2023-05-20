@@ -76,7 +76,7 @@ const RegisterPage: React.FC = () => {
     <Layout pageTitle="Register">
       <div className={styles.container}>
         <div className={styles.form}>
-          <h1>Register in HourlyHub</h1>
+          <h1>Register on HourlyHub</h1>
           
           {submitStatus === 'success' && <p className={styles.success}>{message}</p>}
           {submitStatus === 'error' && <p className={styles.error}>{message}</p>}
