@@ -11,6 +11,7 @@ interface LoginPageProps {
 const LoginPage: React.FC<LoginPageProps> = ({}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const router = useRouter();
 
   const submit = async (e: SyntheticEvent) => {
     e.preventDefault();
@@ -24,6 +25,8 @@ const LoginPage: React.FC<LoginPageProps> = ({}) => {
         password,
       }),
     });
+
+    await router.push('/');
   }
 
   return (

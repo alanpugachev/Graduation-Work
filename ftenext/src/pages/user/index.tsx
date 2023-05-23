@@ -15,8 +15,16 @@ interface UserHomePageProps {
 }
 
 const UserHomePage: React.FC<UserHomePageProps> = (props) => {
-  const [profile, setProfile] = useState<Profile | null>(null);
   const router = useRouter();
+
+  async function getData() {
+    const res = await fetch('http://localhost:8080/user');
+    if (!res.ok) {
+      throw new Error('Failed to fetch data');
+    }
+
+    return res.json();
+  }
 
   function logout() {
     localStorage.removeItem("token");
@@ -26,7 +34,6 @@ const UserHomePage: React.FC<UserHomePageProps> = (props) => {
   return (
     <Layout pageTitle="User Home Page">
       <div className={styles.container}>
-        <p>Signed in as: {profile && profile.firstName && profile.secondName && profile.role}</p>
         <p><button onClick={logout}>Log Out</button></p>
       </div>
     </Layout>

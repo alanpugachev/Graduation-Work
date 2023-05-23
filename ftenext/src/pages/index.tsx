@@ -15,34 +15,27 @@ interface HomePageProps {
 } */
 
 const HomePage: React.FC<HomePageProps> = ({}) => {
-  /*const router = useRouter();
+  const [message, setMessage] = useState('');
 
-  const [state, setState] = useState<State>({
-    email: "",
-    password: ""
-  })
-
-  function handleChange(e: ChangeEvent<HTMLInputElement>) {
-    const { name, value } = e.target;
-    setState(prevState => ({ ...prevState, [name]: value }));
-  }
+  useEffect(() => {
+    (
+      async () => {
+        try {
+          const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
+            method: 'GET',
+            headers: {'Content-Type': 'application/json'},
+            credentials: 'include',
+          });
   
-  async function handleSubmit() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-      method: "POST",
-      body: JSON.stringify(state),
-      headers: {
-        "Content-Type": "application/json"
+          const content = await response.json();
+  
+          setMessage(`Hi ${content.firstName}`)
+        } catch(e) {
+          setMessage('You are not logged in')
+        }
       }
-    })
-    if (res.ok) {
-      const json = await res.json()
-      localStorage.setItem("token", json.token)
-      router.push("/user")
-    } else {
-      alert("Bad credentials")
-    }
-  } */
+    )();
+  })
 
   return (
     <Layout pageTitle="HourlyHub">
@@ -53,6 +46,7 @@ const HomePage: React.FC<HomePageProps> = ({}) => {
       <a href='/login'>Login</a>
       <div className={styles.container}>
       </div>
+      {message}
     </Layout>
   );
 };
