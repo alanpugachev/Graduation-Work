@@ -1,8 +1,8 @@
 package com.alanpugachev.ftespring.dtos
 
-class CreateTaskDTO {
-    val title = ""
-    val executionTime = ""
-    val customer = ""
-    val price = ""
-}
+class CreateTaskDTO(
+    val title: String,
+    val executionTime: String,
+    val customer: String,
+    val price: String
+)

@@ -1,6 +1,6 @@
 package com.alanpugachev.ftespring.dtos
 
-class LoginDTO {
-    val email = ""
-    val password = ""
-}
+class LoginDTO(
+    val email: String,
+    val password: String
+)

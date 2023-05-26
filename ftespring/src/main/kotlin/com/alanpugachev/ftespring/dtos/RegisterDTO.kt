@@ -1,9 +1,9 @@
 package com.alanpugachev.ftespring.dtos
 
-class RegisterDTO {
-    val firstName = ""
-    val secondName = ""
-    val email = ""
-    val password = ""
-    val role = ""
-}
+class RegisterDTO(
+    val firstName: String,
+    val secondName: String,
+    val email: String,
+    val password: String,
+    val role: String
+)
