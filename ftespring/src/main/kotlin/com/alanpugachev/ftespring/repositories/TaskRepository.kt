@@ -5,4 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository
 
 interface TaskRepository: JpaRepository<Task, Int> {
     fun findByTitle(title: String): Task?
+
+    fun findByCustomer(customer: String): Array<Task?>
 }

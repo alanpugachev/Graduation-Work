@@ -26,6 +26,15 @@ public class DBEditController(private val taskService: TaskService) {
         }
     }
 
+    @GetMapping("task/{username}")
+    fun getTaskByCustomer(@PathVariable username: String): ResponseEntity<Array<Task?>> {
+        return try {
+            ResponseEntity.ok(this.taskService.getByCustomer(username))
+        } catch (e: Exception) {
+            ResponseEntity.badRequest().body(null)
+        }
+    }
+
     @PostMapping("create")
     fun createTask(@RequestBody body: CreateTaskDTO): ResponseEntity<Task> {
         val task = Task()

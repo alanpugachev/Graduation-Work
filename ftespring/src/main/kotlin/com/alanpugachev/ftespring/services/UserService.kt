@@ -1,5 +1,6 @@
 package com.alanpugachev.ftespring.services
 
+import com.alanpugachev.ftespring.models.Task
 import com.alanpugachev.ftespring.models.Users
 import com.alanpugachev.ftespring.repositories.UserRepository
 import org.springframework.stereotype.Service
@@ -16,5 +17,24 @@ class UserService(private val userRepository: UserRepository) {
 
     fun getById(id: Int): Users {
         return this.userRepository.findById(id).get()
+    }
+
+    fun getAllUsers(): MutableList<Users> {
+        return this.userRepository.findAll()
+    }
+
+    fun update(user: Users, id: Int): Users {
+        var userEntity = this.userRepository.findById(id).get()
+
+        userEntity.firstName = user.firstName
+        userEntity.secondName = user.secondName
+        userEntity.email = user.email
+        userEntity.role = user.role
+
+        return this.userRepository.save(userEntity)
+    }
+
+    fun delete(id: Int) {
+        return this.userRepository.deleteById(id)
     }
 }

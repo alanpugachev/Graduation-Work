@@ -11,6 +11,11 @@ class TaskService(private val taskRepository: TaskRepository) {
     fun get(id: Int): Task {
         return this.taskRepository.getReferenceById(id)
     }
+
+    fun getByCustomer(username: String): Array<Task?> {
+        return this.taskRepository.findByCustomer(username)
+    }
+
     fun save(task: Task): Task {
         return this.taskRepository.save(task)
     }
