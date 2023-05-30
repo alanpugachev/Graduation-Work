@@ -47,6 +47,8 @@ const HomePage: React.FC<HomePageProps> = ({}) => {
       <div className={styles.container}>
       </div>
       {message}
+      <br/>
+      <a href='/tasks'>My Tasks</a>
     </Layout>
   );
 };
