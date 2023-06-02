@@ -1,25 +1,26 @@
 import { Inter } from 'next/font/google';
-import Layout from '../../../components/Layout/Layout';
-import styles from './Register.module.scss';
-import { useEffect, useState } from 'react';
+import Layout from '../../../../components/Layout/Layout';
+import styles from './AddTask.module.scss';
+import React, { useEffect, useState } from 'react';
 
 const inter = Inter({ subsets: ['latin'] });
 
-interface FormData {
-  firstName: string;
-  secondName: string;
-  email: string;
-  password: string;
-  role: string;
+interface TasksPageProps {
 }
 
-const RegisterPage: React.FC = () => {
+interface FormData {
+  title: string,
+  executionTime: string,
+  customer: string,
+  price: string
+}
+
+const TaskCreatingPage: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    secondName: '',
-    email: '',
-    password: '',
-    role: '',
+    title: '',
+    executionTime: '',
+    customer: '',
+    price: '',
   });
 
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -35,7 +36,16 @@ const RegisterPage: React.FC = () => {
     setMessage(null);
 
     try {
-      const response = await fetch('http://localhost:8080/register', {
+      const userResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+        credentials: 'include',
+      });
+    
+      const userContent = await userResponse.json();
+      data.customer = userContent.secondName;
+
+      const response = await fetch('http://localhost:8080/db/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -48,6 +58,7 @@ const RegisterPage: React.FC = () => {
       }
 
       const responseData = await response.json();
+
       console.log('Server response: ', responseData);
       setSubmitStatus('success');
       setMessage('Form submitted successfully');
@@ -65,82 +76,54 @@ const RegisterPage: React.FC = () => {
   };
 
   return (
-    <Layout pageTitle="Register">
+    <Layout pageTitle="New Tasks">
       <div className={styles.container}>
         <div className={styles.form}>
-          <h1>Register on HourlyHub</h1>
+          <h1>Add new tasks</h1>
           
           {submitStatus === 'success' && <p className={styles.success}>{message}</p>}
           {submitStatus === 'error' && <p className={styles.error}>{message}</p>}
 
           <form onSubmit={handleSubmit} className={styles.form}>
             <div className={styles.fieldWLabel}>
-              <label htmlFor="firstName" className={styles.formLabel}>First Name:</label>
+              <label htmlFor="title" className={styles.formLabel}>Title:</label>
               <br/>
               <input
                 type="text"
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
+                id="title"
+                name="title"
+                value={formData.title}
                 onChange={handleChange}
                 className={styles.inputField}
-                placeholder='Enter your fisrt name'
+                placeholder='Enter task&apos;s title'
               />
             </div>
             <br/>
             <div className={styles.fieldWLabel}>
-              <label htmlFor="secondName" className={styles.formLabel}>Second Name:</label>
+              <label htmlFor="executionTime" className={styles.formLabel}>Execution time:</label>
               <br/>
               <input
                 type="text"
-                id="secondName"
-                name="secondName"
-                value={formData.secondName}
+                id="executionTime"
+                name="executionTime"
+                value={formData.executionTime}
                 onChange={handleChange}
                 className={styles.inputField}
-                placeholder='Enter your second name'
+                placeholder='Enter execution'
               />
             </div>
             <br/>
             <div className={styles.fieldWLabel}>
-              <label htmlFor="email" className={styles.formLabel}>Email:</label>
-              <br/>
-              <input
-                type="email"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className={styles.inputField}
-                placeholder='Enter your email'
-              />
-            </div>
-            <br/>
-            <div className={styles.fieldWLabel}>
-              <label htmlFor="password" className={styles.formLabel}>Password:</label>
-              <br/>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className={styles.inputField}
-                placeholder='Enter your password'
-              />
-            </div>
-            <br/>
-            <div className={styles.fieldWLabel}>
-              <label htmlFor="role" className={styles.formLabel}>Role:</label>
+              <label htmlFor="price" className={styles.formLabel}>Price:</label>
               <br/>
               <input
                 type="text"
-                id="role"
-                name="role"
-                value={formData.role}
+                id="price"
+                name="price"
+                value={formData.price}
                 onChange={handleChange}
                 className={styles.inputField}
-                placeholder='Enter your role'
+                placeholder='Enter price'
               />
             </div>
             <br/>
@@ -156,4 +139,4 @@ const RegisterPage: React.FC = () => {
   );
 }
 
-export default RegisterPage;
+export default TaskCreatingPage;

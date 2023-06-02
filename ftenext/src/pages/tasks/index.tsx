@@ -1,7 +1,8 @@
 import { Inter } from 'next/font/google';
 import Layout from '../../../components/Layout/Layout';
-import { JSXElementConstructor, ReactElement, ReactFragment, ReactPortal, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Tasks.module.scss';
+import Link from 'next/link';
 
 interface TasksPageProps {
 }
@@ -85,9 +86,7 @@ const TasksPage: React.FC<TasksPageProps> = ({}) => {
       </div>
 
       <div>
-        <button type='button'>
-          Add Task
-        </button>
+        <Link href='/tasks/add-task'>Add Task</Link>
       </div>
     </Layout>
   );
