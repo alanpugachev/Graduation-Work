@@ -26,6 +26,8 @@ interface User {
 const AdminPage: React.FC<AdminPageProps> = ({}) => {
   const [tasks, setTasks] = useState<any>();
   const [users, setUsers] = useState<any>();
+  
+  const router = useRouter(); 
 
   async function handleTaskRemove(id: number) {
     try {
@@ -41,6 +43,12 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
     }
   }
 
+  async function handleTaskEdit() {
+    router.push('/admin/edit-task');
+  }
+
+
+
   async function handleUserRemove(id: number) {
     try {
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/admin/delete-user/${id}`, {
@@ -54,6 +62,12 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
       console.log(`Error when deleting user: ${id}`)
     }
   }
+
+  async function handleUserEdit() {
+    router.push('/admin/edit-user')
+  }
+
+
 
   useEffect(() => {
     (
@@ -109,7 +123,9 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
               <h3>{item.price}</h3>
               <h6>{item.id}</h6>
             </ul>
-            <button>Edit</button>
+            <button type='button' onClick={() => handleTaskEdit()}>
+              Edit
+            </button>
             <br />
             <button type='button' onClick={() => handleTaskRemove(item.id)}>
               Delete
@@ -136,7 +152,9 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
               <h3>{item.role}</h3>
               <h6>{item.id}</h6>
             </ul>
-            <button>Edit</button>
+            <button type='button' onClick={() => handleUserEdit()}>
+              Edit
+            </button>
             <br />
             <button type='button' onClick={() => handleUserRemove(item.id)}>
               Delete
