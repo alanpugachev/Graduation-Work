@@ -34,4 +34,8 @@ class TaskService(private val taskRepository: TaskRepository) {
     fun delete(id: Int) {
         return this.taskRepository.deleteById(id)
     }
+
+    fun getAllTasks(): MutableList<Task> {
+        return this.taskRepository.findAll()
+    }
 }

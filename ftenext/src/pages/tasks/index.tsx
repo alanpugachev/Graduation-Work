@@ -76,7 +76,7 @@ const TasksPage: React.FC<TasksPageProps> = ({}) => {
               <h2>{item.executionTime}</h2>
               <h3>{item.price}</h3>
             </ul>
-            <button>Edit</button>
+            {/* <button>Edit</button> */}
             <br />
             <button type='button' onClick={() => handleRemove(item.id)}>
               Delete

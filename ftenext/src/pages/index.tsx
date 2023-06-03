@@ -16,6 +16,12 @@ interface HomePageProps {
 
 const HomePage: React.FC<HomePageProps> = ({}) => {
   const [message, setMessage] = useState('');
+  const router = useRouter();
+
+  function logout() {
+    localStorage.removeItem("token");
+    router.push("/");
+  }
 
   useEffect(() => {
     (
@@ -49,6 +55,7 @@ const HomePage: React.FC<HomePageProps> = ({}) => {
       {message}
       <br/>
       <a href='/tasks'>My Tasks</a>
+      {/* <p><button onClick={logout}>Log Out</button></p> */}
     </Layout>
   );
 };

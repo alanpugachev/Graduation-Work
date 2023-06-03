@@ -18,6 +18,8 @@ repositories {
 dependencies {
 	// https://mvnrepository.com/artifact/org.postgresql/postgresql
 	implementation("org.postgresql:postgresql:42.2.27")
+	// https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core
+	implementation("org.hibernate.orm:hibernate-core:6.2.3.Final")
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-security")
 	implementation("org.springframework.boot:spring-boot-starter-web")
