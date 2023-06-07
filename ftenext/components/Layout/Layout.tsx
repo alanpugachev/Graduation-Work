@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children, pageTitle }) => {
         {children}
       </main>
       <footer className={styles.footerContainer}>
-        <p>© Alan Pugachev 2023</p>
+        <p>HourlyHub © Amin Astezhev 2023</p>
       </footer>
     </>
   );

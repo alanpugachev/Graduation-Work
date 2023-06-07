@@ -2,6 +2,7 @@ import { Inter } from 'next/font/google';
 import Layout from '../../../components/Layout/Layout';
 import styles from './Register.module.scss';
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/router';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -21,6 +22,8 @@ const RegisterPage: React.FC = () => {
     password: '',
     role: '',
   });
+
+  const router = useRouter(); 
 
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState<string | null>(null);
@@ -51,6 +54,7 @@ const RegisterPage: React.FC = () => {
       console.log('Server response: ', responseData);
       setSubmitStatus('success');
       setMessage('Form submitted successfully');
+      router.push('/login')
     } catch (error) {
       console.error('Error during sending data:', error);
       setSubmitStatus('error');

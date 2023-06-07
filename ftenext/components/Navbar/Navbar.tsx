@@ -12,6 +12,10 @@ const Navbar: React.FC = () => {
         <Link href="/admin" className={styles.item}>
           For Admins
         </Link>
+        {/* <a href='/tasks'>My Tasks</a> */}
+        <Link href="/tasks" className={styles.item}>
+          My Tasks
+        </Link>
       </div>
       <div className={styles.iconContainer}>
         <span className={styles.hhub}>HHUB</span>

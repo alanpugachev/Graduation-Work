@@ -31,20 +31,42 @@ const LoginPage: React.FC<LoginPageProps> = ({}) => {
 
   return (
     <Layout pageTitle='Login'>
-      <div className={styles.form}>
-        <form onSubmit={submit}>
+      <div className={styles.container}>
+        <div className={styles.form}>
           <h1>Login on HourlyHub</h1>
+          <form onSubmit={submit}>
 
-          <input type='email' className={styles.input} placeholder='Email' required
-            onChange={e => setEmail(e.target.value)}
-          />
+            <div className={styles.fieldWLabel}>
+              <label htmlFor="email" className={styles.formLabel}>Email:</label>
+              <br />
+              <input 
+                type='email' 
+                className={styles.inputField} 
+                placeholder='Email' 
+                required
+                onChange={e => setEmail(e.target.value)}
+              />
+            </div>
 
-          <input type='password' className={styles.input} placeholder='Password' required
-            onChange={e => setPassword(e.target.value)}
-          />
+            <div className={styles.fieldWLabel}>
+              <label htmlFor="password" className={styles.formLabel}>Password:</label>
+              <br />
+              <input 
+                type='password' 
+                className={styles.inputField} 
+                placeholder='Password' 
+                required
+                onChange={e => setPassword(e.target.value)}
+              />
+            </div>
 
-          <button className={styles.loginButton} type='submit'>Log In</button>
-        </form>
+            <div className={styles.buttonContainer}>
+              <button className={styles.formButton} type='submit'>
+                Log In
+              </button>
+            </div>
+          </form>
+        </div>
       </div>
     </Layout>
   );

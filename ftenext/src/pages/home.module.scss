@@ -1,0 +1,39 @@
+.mainText {
+  margin: 24px 0 0 24px;
+  border-radius: 8px;
+  width: 96vw;
+  height: 40vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  //align-items: center;
+  background-color: #4e4e4e;
+  padding-left: 8px;
+}
+
+.container {
+  font-size: 24px;
+  margin-left: 24px;
+}
+
+.auth {
+  display: flex;
+  flex-direction: row;
+  background-color: #3e3e3e;
+  border-radius: 8px;
+  width: 20vw;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.authButton {
+  //margin-left: 16px;
+  background-color: #f2c53d;
+  height: 32px;
+  width: 100px;
+  align-self: center;
+  align-items: center;
+  justify-items: center;
+  text-align: center;
+  border-radius: 4px;
+}

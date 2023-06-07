@@ -1,0 +1,112 @@
+.textBlock {
+  margin-left: 24px;
+  background-color: #3e3e3e;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.mainContainer {
+  //margin-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.tasksContainer {
+  background-color: #3e3e3e;
+  margin-left: 24px;
+  width: 96vw;
+
+  border-radius: 8px;
+}
+
+.names {
+  margin-left: 48px;
+  background-color: #3e3e3e;
+
+  width: 92vw;
+  height: 8vh;
+
+  font-size: 42px;
+  border-radius: 8px;
+
+  padding-left: 8px;
+}
+
+.tasksBlock {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 32px;
+}
+
+.usersBlock {
+  display: flex;
+  flex-direction: row;
+}
+
+.itemsList {
+  background-color: #4e4e4e;
+  width: 81vw;
+  border-radius: 8px;
+
+  font-size: 24px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+}
+
+.editButton {
+  margin: auto;
+  width: 12vw;
+  height: 6vh;
+  border-radius: 4px;
+
+  text-transform: lowercase;
+  font-size: large;
+  font-weight: bold;
+  background-color: #f2c53d;
+}
+
+.deleteButton {
+  margin: auto;
+  width: 12vw;
+  height: 6vh;
+  border-radius: 4px;
+
+  text-transform: lowercase;
+  font-size: large;
+  font-weight: bold;
+  background-color: #f2c53d;
+}
+
+.otherButtons {
+  margin-top: 24px;
+
+  //margin: auto;
+  width: 12vw;
+  height: 6vh;
+  border-radius: 8px;
+
+  text-transform: lowercase;
+  font-size: large;
+  font-weight: bold;
+  background-color: #f2c53d;
+  color: black;
+  margin-left: 48px;
+  margin-top: 48px;
+}
+
+.addButton {
+  //margin: auto;
+  width: 12vw;
+  height: 6vh;
+  border-radius: 4px;
+
+  text-transform: lowercase;
+  font-size: large;
+  font-weight: bold;
+  background-color: #f2c53d;
+  color: black;
+  margin-left: 64px;
+}

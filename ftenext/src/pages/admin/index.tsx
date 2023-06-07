@@ -103,41 +103,45 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
 
   return (
     <Layout pageTitle='Admin'>
-      <h1>Admin's Page</h1>
-      <p>Here You can edit users and their tasks.</p>
+      <div className={styles.textBlock}>
+        <h1>Admin's Page</h1>
+        <p>Here You can edit users and their tasks.</p>
+        <br />
+      </div>
 
-      <br />
-
-      <h3>Tasks: </h3>
-      <div>
+      <h3 className={styles.names}>Tasks: </h3>
+      <div className={styles.tasksContainer}>
       {tasks?.map((item: { 
           id: number;
           title: string | null | undefined; 
           price: string | null | undefined;
           executionTime: string | null | undefined;
           }) => 
-          <div>
-            <ul>
-              <h1>{item.title}</h1>
-              <h2>{item.executionTime}</h2>
-              <h3>{item.price}</h3>
-              <h6>{item.id}</h6>
-            </ul>
-            <button type='button' onClick={() => handleTaskEdit()}>
-              Edit
-            </button>
-            <br />
-            <button type='button' onClick={() => handleTaskRemove(item.id)}>
-              Delete
-            </button>
+          <div className={styles.tasksBlock}>
+            <div className={styles.itemsList}>
+              <ul>
+                <p>id {item.id}: {item.title}</p>
+                <p>Execution time: {item.executionTime}</p>
+                <p>Price: {item.price}</p>
+              </ul>
+            </div>
+            <div className={styles.buttons}>
+              <button type='button' className={styles.editButton} onClick={() => handleTaskEdit()}>
+                Edit
+              </button>
+              <br />
+              <button type='button' className={styles.deleteButton} onClick={() => handleTaskRemove(item.id)}>
+                Delete
+              </button>
+            </div>
           </div>
           )}
       </div>
 
-      <br />
+      <br /><br /><br /><br />
 
-      <h3>Users: </h3>
-      <div>
+      <h3 className={styles.names}>Users: </h3>
+      <div className={styles.tasksContainer}>
       {users?.map((item: { 
           id: number;
           firstName: string | null | undefined; 
@@ -145,20 +149,23 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
           email: string | null | undefined;
           role: string | null | undefined;
           }) => 
-          <div>
-            <ul>
-              <h1>{item.email}</h1>
-              <h2>{item.firstName} {item.secondName}</h2>
-              <h3>{item.role}</h3>
-              <h6>{item.id}</h6>
-            </ul>
-            <button type='button' onClick={() => handleUserEdit()}>
-              Edit
-            </button>
-            <br />
-            <button type='button' onClick={() => handleUserRemove(item.id)}>
-              Delete
-            </button>
+          <div className={styles.usersBlock}>
+            <div className={styles.itemsList}>
+              <ul>
+                <p>id: {item.id}. Email: {item.email}</p>
+                <p>Name: {item.firstName} {item.secondName}</p>
+                <p>Role: {item.role}</p>
+              </ul>
+            </div>
+            <div className={styles.buttons}>
+              <button type='button' className={styles.editButton} onClick={() => handleUserEdit()}>
+                Edit
+              </button>
+              <br />
+              <button type='button' className={styles.deleteButton} onClick={() => handleUserRemove(item.id)}>
+                Delete
+              </button>
+            </div>
           </div>
           )}
       </div>

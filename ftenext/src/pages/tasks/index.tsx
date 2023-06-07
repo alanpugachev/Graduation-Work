@@ -63,30 +63,37 @@ const TasksPage: React.FC<TasksPageProps> = ({}) => {
 
   return (
     <Layout pageTitle='My Tasks'>
-      <div>
-        {task?.map((item: { 
-          id: number;
-          title: string | null | undefined; 
-          price: string | null | undefined;
-          executionTime: string | null | undefined;
-          }) => 
-          <div>
-            <ul>
-              <h1>{item.title}</h1>
-              <h2>{item.executionTime}</h2>
-              <h3>{item.price}</h3>
-            </ul>
-            {/* <button>Edit</button> */}
-            <br />
-            <button type='button' onClick={() => handleRemove(item.id)}>
-              Delete
-            </button>
-          </div>
-          )}
-      </div>
+      <h3 className={styles.names}>Your tasks: </h3>
+      <div className={styles.mainContainer}>
+        <div className={styles.tasksContainer}>
+          {task?.map((item: { 
+            id: number;
+            title: string | null | undefined; 
+            price: string | null | undefined;
+            executionTime: string | null | undefined;
+            }) => 
+            <div className={styles.tasksBlock}>
+              <div className={styles.itemsList}>
+                <ul>
+                  <p>id {item.id}: {item.title}</p>
+                  <p>Execution time: {item.executionTime}</p>
+                  <p>Price: {item.price}</p>
+                </ul>
+              </div>
+              {/* <button>Edit</button> */}
+              <br />
+              <div className={styles.buttons}>
+                <button type='button' className={styles.deleteButton} onClick={() => handleRemove(item.id)}>
+                  Delete
+                </button>
+              </div>
+            </div>
+            )}
+        </div>
 
-      <div>
-        <Link href='/tasks/add-task'>Add Task</Link>
+        <div className={styles.otherButtons}>
+          <Link className={styles.addButton} href='/tasks/add-task'>Add Task</Link>
+        </div>
       </div>
     </Layout>
   );
