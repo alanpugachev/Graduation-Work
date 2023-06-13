@@ -194,8 +194,8 @@ const TaskCreatingPage: React.FC = () => {
             </div>
             <br/>
             <div className={styles.fieldWLabel}>
-              <button type="button" onClick={calculatePrice}>calculate price</button>
-              <label htmlFor="price" className={styles.formLabel}>Price: {price} CV</label>
+              <button type="button" onClick={calculatePrice} className={styles.calculateButton}>calculate price</button>
+              <label htmlFor="price" className={styles.formPrice}>Price: {price} CV</label>
               {/* <br/>
               <input
                 type="text"

@@ -27,11 +27,33 @@
   margin-bottom: 12px;
 }
 
+.fieldWLabelPrice {
+  background-color: #4e4e4e ;
+  width: 20vw;
+  height: 16vh;
+  padding-left: 16px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
 .formLabel {
   text-transform: lowercase;
 }
 
 .inputField {
+  width: 18vw;
+  background-color: #2e2e2e;
+  color: aliceblue;
+}
+
+.selectField {
+  width: 18vw;
+  background-color: #2e2e2e;
+  color: aliceblue;
+}
+
+.inputFieldPrice {
+  margin-top: 16px;
   width: 18vw;
   background-color: #2e2e2e;
   color: aliceblue;
@@ -58,4 +80,15 @@
   font-size: large;
   font-weight: bold;
   background-color: #f2c53d;
+}
+
+.calculateButton {
+  margin-top: 14px;
+  
+  background-color: #f2c53d;
+  border-radius: 4px;
+
+  text-transform: lowercase;
+  font-size: large;
+  font-weight: bold;
 }

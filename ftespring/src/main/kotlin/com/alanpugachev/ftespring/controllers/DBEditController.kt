@@ -39,6 +39,8 @@ public class DBEditController(private val taskService: TaskService) {
     fun createTask(@RequestBody body: CreateTaskDTO): ResponseEntity<Task> {
         val task = Task()
         task.title = body.title
+        task.projectCategory = body.projectCategory
+        task.projectClass = body.projectClass
         task.executionTime = body.executionTime
         task.customer = body.customer
         task.price = body.price

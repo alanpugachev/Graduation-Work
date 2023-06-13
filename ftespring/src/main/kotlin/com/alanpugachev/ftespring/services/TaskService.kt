@@ -24,6 +24,8 @@ class TaskService(private val taskRepository: TaskRepository) {
         var taskEntity = this.taskRepository.findById(id).get()
 
         taskEntity.title = task.title
+        taskEntity.projectCategory = task.projectCategory
+        taskEntity.projectClass =  task.projectClass
         taskEntity.price = task.price
         taskEntity.customer = task.customer
         taskEntity.executionTime = task.executionTime

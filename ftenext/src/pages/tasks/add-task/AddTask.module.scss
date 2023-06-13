@@ -31,6 +31,11 @@
   text-transform: lowercase;
 }
 
+.formPrice {
+  text-transform: lowercase;
+  margin-left: 12px;
+}
+
 .inputField {
   width: 18vw;
   background-color: #2e2e2e;
@@ -64,4 +69,15 @@
   font-size: large;
   font-weight: bold;
   background-color: #f2c53d;
+}
+
+.calculateButton {
+  margin-top: 14px;
+  
+  background-color: #f2c53d;
+  border-radius: 4px;
+
+  text-transform: lowercase;
+  font-size: large;
+  font-weight: bold;
 }

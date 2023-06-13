@@ -217,10 +217,8 @@ const TaskEditPage: React.FC = () => {
               />
             </div>
             <br/>
-            <div className={styles.fieldWLabel}>
-              <label htmlFor="price" className={styles.formLabel}>Price:</label>
-              <button type="button" onClick={calculatePrice}>calculate price</button>
-              <label htmlFor="price" className={styles.formLabel}>Price: {price} CV</label>
+            <div className={styles.fieldWLabelPrice}>
+              <button type="button" onClick={calculatePrice} className={styles.calculateButton}>calculate price</button>
               <br/>
               <input
                 type="text"
@@ -228,7 +226,7 @@ const TaskEditPage: React.FC = () => {
                 name="price"
                 value={formData.price}
                 onChange={handleChange}
-                className={styles.inputField}
+                className={styles.inputFieldPrice}
                 placeholder= {price.toString()}
               />
             </div>

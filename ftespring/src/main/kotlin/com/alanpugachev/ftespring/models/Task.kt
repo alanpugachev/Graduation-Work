@@ -18,6 +18,12 @@ class Task {
     var title = ""
 
     @Column
+    var projectCategory =""
+
+    @Column
+    var projectClass = ""
+
+    @Column
     var executionTime = ""
 
     @Column
