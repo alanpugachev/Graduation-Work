@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google';
 import Layout from '../../../../components/Layout/Layout';
+import { equivalentsMap, getClassEquivalent, getTermEquivalent } from '../../../../components/WoSequivalents';
 import styles from './EditTask.module.scss';
 import React, { useEffect, useState } from 'react';
 
@@ -31,11 +32,27 @@ const TaskEditPage: React.FC = () => {
 
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState<string | null>(null);
+  const [price, setPrice] = useState(0);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  function calculatePrice() {
+    const projectClassPrice = getClassEquivalent(formData.projectClass);
+    const projectTermPrice = getTermEquivalent(formData.projectCategory);
+    const projectHours = parseInt(formData.executionTime.replace(/\D/g, ""));
+
+    if (projectClassPrice !== undefined && projectTermPrice !== undefined) {
+      const price = Number((projectTermPrice * projectClassPrice * 0.3 * projectHours).toFixed(2));
+      setPrice(price);
+      formData.price = price.toString();
+    }
+    else {
+      setPrice(0);
+    }
+  }
 
   const sendData = async (data: FormData) => {
     setSubmitStatus('submitting');
@@ -202,6 +219,8 @@ const TaskEditPage: React.FC = () => {
             <br/>
             <div className={styles.fieldWLabel}>
               <label htmlFor="price" className={styles.formLabel}>Price:</label>
+              <button type="button" onClick={calculatePrice}>calculate price</button>
+              <label htmlFor="price" className={styles.formLabel}>Price: {price} CV</label>
               <br/>
               <input
                 type="text"
@@ -210,7 +229,7 @@ const TaskEditPage: React.FC = () => {
                 value={formData.price}
                 onChange={handleChange}
                 className={styles.inputField}
-                placeholder='Enter price'
+                placeholder= {price.toString()}
               />
             </div>
             <br/>

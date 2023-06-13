@@ -40,16 +40,15 @@ const TaskCreatingPage: React.FC = () => {
   function calculatePrice() {
     const projectClassPrice = getClassEquivalent(formData.projectClass);
     const projectTermPrice = getTermEquivalent(formData.projectCategory);
+    const projectHours = parseInt(formData.executionTime.replace(/\D/g, ""));
 
     if (projectClassPrice !== undefined && projectTermPrice !== undefined) {
-      const price = projectTermPrice * projectClassPrice;
+      const price = Number((projectTermPrice * projectClassPrice * 0.3 * projectHours).toFixed(2));
       setPrice(price);
+      formData.price = price.toString();
     }
     else {
-      setPrice(999);
-      //console.log(formData.projectCategory)
-      //console.log(formData.projectClass)
-      console.log(getClassEquivalent(formData.projectClass))
+      setPrice(0);
     }
   }
 
@@ -195,8 +194,8 @@ const TaskCreatingPage: React.FC = () => {
             </div>
             <br/>
             <div className={styles.fieldWLabel}>
-              <button onClick={calculatePrice}>calculate price</button>
-              <label htmlFor="price" className={styles.formLabel}>Price: {price}</label>
+              <button type="button" onClick={calculatePrice}>calculate price</button>
+              <label htmlFor="price" className={styles.formLabel}>Price: {price} CV</label>
               {/* <br/>
               <input
                 type="text"

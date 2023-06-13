@@ -28,7 +28,7 @@ const UserEditPage: React.FC = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -126,15 +126,16 @@ const UserEditPage: React.FC = () => {
             <div className={styles.fieldWLabel}>
               <label htmlFor="role" className={styles.formLabel}>Role:</label>
               <br/>
-              <input
-                type="text"
+              <select 
+                name="role" 
                 id="role"
-                name="role"
                 value={formData.role}
                 onChange={handleChange}
-                className={styles.inputField}
-                placeholder='Enter role'
-              />
+                className={styles.selectField}
+                >
+                <option value="admin">admin</option>
+                <option value="user">user</option>
+              </select>
             </div>
             <br/>
             <div className={styles.fieldWLabel}>
