@@ -5,6 +5,32 @@
   padding: 6px;
 }
 
+.container {
+  display: flex;
+  flex-direction: row;
+}
+
+.textContainer {
+  background-color: #3e3e3e;
+  margin-left: 24px;
+  width: 46vw;
+
+  border-radius: 8px;
+}
+
+.rightTextBlock {
+  font-size: 24px;
+  //margin:0 24px 0 24px;
+  margin-top: -24px;
+  border-radius: 8px;
+  background-color: #4e4e4e;
+  width: 46vw;
+}
+
+.block {
+  margin: 24px;
+}
+
 .mainContainer {
   //margin-bottom: 12px;
   margin-bottom: 12px;
@@ -13,16 +39,16 @@
 .tasksContainer {
   background-color: #3e3e3e;
   margin-left: 24px;
-  width: 96vw;
+  width: 46vw;
 
   border-radius: 8px;
 }
 
 .names {
-  margin-left: 48px;
+  margin-left: 24px;
   background-color: #3e3e3e;
 
-  width: 92vw;
+  width: 93vw;
   height: 8vh;
 
   font-size: 42px;
@@ -70,6 +96,7 @@
 
 .deleteButton {
   margin: auto;
+  margin-right: 12px;
   width: 12vw;
   height: 6vh;
   border-radius: 4px;
@@ -99,6 +126,21 @@
 
 .addButton {
   //margin: auto;
+  width: 18vw;
+  height: 6vh;
+  border-radius: 4px;
+
+  text-transform: lowercase;
+  font-size: large;
+  font-weight: bold;
+  background-color: #f2c53d;
+  color: black;
+  margin-left: 24px;
+  margin-bottom: 12px;
+}
+
+.contactButton {
+  //margin: auto;
   width: 12vw;
   height: 6vh;
   border-radius: 4px;
@@ -108,5 +150,6 @@
   font-weight: bold;
   background-color: #f2c53d;
   color: black;
-  margin-left: 64px;
+  margin-left: 24px;
+  margin-bottom: 12px;
 }

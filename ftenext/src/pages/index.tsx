@@ -58,7 +58,7 @@ const HomePage: React.FC<HomePageProps> = ({}) => {
           <> 
             <p>Now please</p>
             <div className={styles.auth}>
-              <a href='/register' className={styles.authButton}>Register</a>
+              <a href='/register' className={styles.registerButton}>Register</a>
               <p>or</p>
               <a href='/login' className={styles.authButton}>Login</a>
             </div> 

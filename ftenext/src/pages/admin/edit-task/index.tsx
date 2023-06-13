@@ -9,8 +9,10 @@ interface TaskEditPageProps {
 }
 
 interface FormData {
-  id: number
+  id: number,
   title: string,
+  projectCategory: string,
+  projectClass: string,
   executionTime: string,
   customer: string,
   price: string
@@ -20,6 +22,8 @@ const TaskEditPage: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
     id: 0,
     title: '',
+    projectCategory: '',
+    projectClass: '',
     executionTime: '',
     customer: '',
     price: '',
@@ -28,7 +32,7 @@ const TaskEditPage: React.FC = () => {
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState<string | null>(null);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -109,6 +113,65 @@ const TaskEditPage: React.FC = () => {
               />
             </div>
             <br/>
+            <div className={styles.fieldWLabel}>
+              <label htmlFor="projectCategory" className={styles.formLabel}>project category:</label>
+              <br />
+              <select 
+                name="projectCategory" 
+                id="projectCategory"
+                value={formData.projectCategory}
+                onChange={handleChange}
+                className={styles.selectField}
+                >
+                <option value="longTerm">Long-term</option>
+                <option value="shortTerm">Short-term</option>
+              </select>
+            </div>
+            <br />
+            <div className={styles.fieldWLabel}>
+              <label htmlFor="projectClass" className={styles.formLabel}>project class:</label>
+              <br />
+              <select 
+                name="projectClass" 
+                id="projectClass"
+                value={formData.projectClass}
+                onChange={handleChange}
+                className={styles.selectField}
+                >
+                <option value="QL">LOGIC (QL)</option>
+                <option value="PO">MATHEMATICS, INTERDISCIPLINARY APPLICATIONS (PO)</option>
+                <option value="PQ">MATHEMATICS (PQ)</option>
+                <option value="UR">PHYSICS, MATHEMATICAL (UR)</option>
+                <option value="PN">MATHEMATICS, APPLIED  (PN)</option>
+                <option value="XY">STATISTICS & PROBABILITY (XN)</option>
+                <option value="ET">COMPUTER SCIENCE, INFORMATION SYSTEMS (ET)</option>
+                <option value="EP">COMPUTER SCIENCE, ARTIFICIAL INTELLIGENCE (EP)</option>
+                <option value="ER">COMPUTER SCIENCE, CYBERNETICS (ER)</option>
+                <option value="EV">COMPUTER SCIENCE, INTERDISCIPLINARY APPLICATIONS (EV)</option>
+                <option value="EW">COMPUTER SCIENCE, SOFTWARE ENGINEERING (EW)</option>
+                <option value="EX">COMPUTER SCIENCE, THEORY & METHODS (EX)</option>
+                <option value="AA">ACOUSTICS (AA)</option>
+                <option value="BU">ASTRONOMY & ASTROPHYSICS (BU)</option>
+                <option value="UH">PHYSICS, ATOMIC, MOLECULAR & CHEMICAL (UH)</option>
+                <option value="SY">OPTICS (SY)</option>
+                <option value="UB">PHYSICS, APPLIED (UB)</option>
+                <option value="UI">PHYSICS, MULTIDISCIPLINARY (UI)</option>
+                <option value="UF">PHYSICS, FLUIDS & PLASMAS (UF)</option>
+                <option value="UK">PHYSICS, CONDENSED MATTER (UK)</option>
+                <option value="UP">PHYSICS, PARTICLES & FIELDS (UP)</option>
+                <option value="UN">PHYSICS, NUCLEAR (UN)</option>
+                <option value="EA">CHEMISTRY, ANALYTICAL (EA)</option>
+                <option value="FI">CRYSTALLOGRAPHY (FI)</option>
+                <option value="EC">CHEMISTRY, INORGANIC & NUCLEAR (EC)</option>
+                <option value="EE">CHEMISTRY, ORGANIC (EE)</option>
+                <option value="UY">POLYMER SCIENCE (UY)</option>
+                <option value="DW">CHEMISTRY, APPLIED (DW)</option>
+                <option value="EI">CHEMISTRY, PHYSICAL (EI)</option>
+                <option value="DY">CHEMISTRY, MULTIDISCIPLINARY (DY)</option>
+                <option value="HQ">ELECTROCHEMISTRY (HQ)</option>
+              </select>
+            </div>
+            <br />
             <div className={styles.fieldWLabel}>
               <label htmlFor="executionTime" className={styles.formLabel}>Execution time:</label>
               <br/>

@@ -7,22 +7,6 @@ import styles from './Admin.module.scss';
 interface AdminPageProps {
 }
 
-interface Task {
-  id: number,
-  title: string,
-  executionTime: string,
-  customer: string,
-  price: string
-}
-
-interface User {
-  id: number,
-  firstName: string,
-  secondName: string,
-  email: string,
-  role: string
-}
-
 const AdminPage: React.FC<AdminPageProps> = ({}) => {
   const [tasks, setTasks] = useState<any>();
   const [users, setUsers] = useState<any>();
@@ -113,16 +97,21 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
       <div className={styles.tasksContainer}>
       {tasks?.map((item: { 
           id: number;
-          title: string | null | undefined; 
+          title: string | null | undefined;
+          projectCategory: string | null | undefined;
+          projectClass: string | null | undefined; 
           price: string | null | undefined;
           executionTime: string | null | undefined;
+          customer: string | null | undefined;
           }) => 
           <div className={styles.tasksBlock}>
             <div className={styles.itemsList}>
               <ul>
-                <p>id {item.id}: {item.title}</p>
-                <p>Execution time: {item.executionTime}</p>
-                <p>Price: {item.price}</p>
+              <p>id {item.id}: {item.title}</p>
+              <p>Execution time: {item.executionTime}</p>
+              <p>Project category: {item.projectCategory}</p>
+              <p>Project class: {item.projectClass}</p>
+              <p>Price: {item.price}</p>
               </ul>
             </div>
             <div className={styles.buttons}>
@@ -138,7 +127,7 @@ const AdminPage: React.FC<AdminPageProps> = ({}) => {
           )}
       </div>
 
-      <br /><br /><br /><br />
+      <br />
 
       <h3 className={styles.names}>Users: </h3>
       <div className={styles.tasksContainer}>

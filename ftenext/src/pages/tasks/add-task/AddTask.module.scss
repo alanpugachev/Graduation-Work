@@ -9,7 +9,7 @@
   margin-bottom: 2vw;
 
   width: 25vw;
-  height: 64vh;
+  height: 94vh;
   background-color: #3e3e3e;
   
   display: flex;
@@ -32,6 +32,12 @@
 }
 
 .inputField {
+  width: 18vw;
+  background-color: #2e2e2e;
+  color: aliceblue;
+}
+
+.selectField {
   width: 18vw;
   background-color: #2e2e2e;
   color: aliceblue;
